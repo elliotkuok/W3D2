@@ -4,7 +4,7 @@ class Board
       @grid = Array.new(n) { Array.new(n) }
       @size = n * n
       self.populate
-
+    
     end
   
     def card_maker
@@ -28,5 +28,25 @@ class Board
           @grid[i][j] = cards.pop
         end
       end
+    end
+
+    def render
+        @grid.each do |row|
+            puts row.join(" ")
+        end
+    end
+
+    def won?
+        @grid.flatten.all? do |card|
+            card.reveal
+        end
+    end
+
+    def reveal(guessed_pos)
+        row, col = pos
+        if !@grid[row][col].reveal
+            @grid[row][col].reveal
+        end
+        @grid[row][col]
     end
 end
