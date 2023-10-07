@@ -5,8 +5,8 @@ class Board
     end
 
     def card_maker
-        card_arr = []
         card_values = ('a'..'z').to_a
+        while
         card_values.each do |value|
             card_arr << Card.new(value) 
             card_arr << Card.new(value) 
@@ -17,8 +17,8 @@ class Board
     def populate
         cards = card_maker
         cards.shuffle!
-        @grid.each_with_index do |row, i|
-            row.each_with_index do |ele, j|
+        @grid.with_index do |i|
+            @grid.with_index do |j|
                 @grid[i][j] = cards.pop
             end
         end
